@@ -1,0 +1,18 @@
+<h1>New Query</h1>
+ 
+<%= form_for :historical_quotes_loader, url: historical_quotes_loader_load_path do |f| %>
+  <%= f.label :stock %><br>
+  Code: <%= f.text_field :stock_code %><br><br>
+
+  <%= f.label :init_date %><br>
+  Day:   <%= f.text_field :day %><br>
+  Month: <%= f.text_field :month %><br>
+  Year:  <%= f.text_field :year %><br>
+  <br>
+  <%= f.label :end_date %><br>
+  Day:   <%= f.text_field :day %><br>
+  Month: <%= f.text_field :month %><br>
+  Year:  <%= f.text_field :year %><br>
+  <br>
+  <%= f.submit %>
+<% end %>

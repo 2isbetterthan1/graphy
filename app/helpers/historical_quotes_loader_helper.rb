@@ -1,0 +1,2 @@
+module HistoricalQuotesLoaderHelper
+end
