@@ -1,2 +1,48 @@
-<h1>HistoricalQuotesLoader#load</h1>
-<p>Find me in app/views/historical_quotes_loader/load.html.erb</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>POC - Chart</title>
+</head>
+
+<body>
+  POC - Chart
+  <div id="chart" style="width: 1300px; height: 500px; margin-left: auto; margin-right: auto;"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script type="text/javascript"
+          src="https://www.google.com/jsapi?autoload={
+            'modules':[{
+              'name':'visualization',
+              'version':'1',
+              'packages':['corechart']
+            }]
+          }">
+  </script>
+
+  <script type="text/javascript">
+    var response = $.ajax({
+      type: "GET",
+      url: "/historical_quotes_loader/load",
+      dataType: "JSON",
+      data: {},
+      success: function(data) {
+        drawChart();
+      }
+    });
+    //google.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable(response.responseJSON);
+
+      var options = {
+        title: 'PETR4 in july',
+        legend: { position: 'bottom' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('chart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</body>
+</html>
